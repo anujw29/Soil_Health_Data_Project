@@ -8,7 +8,8 @@ The goal was simple: get soil health data from a dynamic government website, con
 
 The site was dynamic and had cascading dropdowns for state, district, and block. The idea was to automate this and download CSVs for all possible combinations. Then merge and clean those CSVs and finally do some meaningful analysis on them.
 
-How I Approached the Problem
+How I Approached the Problem -->
+
 I broke the whole thing into three major parts:
 
 Web Scraping (most painful)
@@ -18,6 +19,7 @@ Data Consolidation & Transformation
 Data Analysis & Insights
 
 Part 1: Web Scraping (a.k.a. Sleepless Nights Part 😅)
+
 This part literally took the most time.
 
 I started by trying to use Selenium + Keys from the selenium library to select options in dropdowns — you know, those send_keys() and press enter things. But turns out, that didn’t really work well on this website. The structure was weird and things wouldn’t populate correctly in the next dropdown.
@@ -34,10 +36,12 @@ I tried doing this step in the scraping part itself but got some bugs which I wa
 Also, I noticed that the CSV file i downloaded after clicking on Micronutrient option was same as the one after I clicked on Macro nutrient option, and it was a merged file with both macro and micro nutrient columns. So, didn's include this funtionality in the scraping code.
 
 Part 2: Data Consolidation & Transformation
+
 Honestly, this part felt very standard — like, you loop through your files, load them as pandas dataframes, and then concatenate everything block-wise and district-wise.
 Not much of a challenge here — just set patterns. I removed the block name and village name column as they were of no much use now.
 
 Part 3: Data Analysis & Insights
+
 Also quite basic. I calculated the number of samples in each block by summing the number of soil categories (High, Medium, Low) across nutrients like Nitrogen, Phosphorus, etc.
 
 Some simple visualizations and state/district-level summaries followed. I thought of going deeper — like doing clustering or making a region wise crop suggestion logic but given the time, I kept it straightforward.
@@ -45,6 +49,7 @@ Some simple visualizations and state/district-level summaries followed. I though
 At one point, I thought of integrating a GIS map with my analysis, which would’ve been cool. But that’s something I’ll definitely try next time I work on such geo-tagged data.
 
 Where and Why I Ran Into Trouble
+
 As I said earlier — scraping dynamic dropdowns was a pain.
 
 The biggest problem was understanding how the page reloads things. Since the dropdowns were nested (i.e. district options load only after state is selected), Selenium couldn’t handle the race conditions well.
@@ -53,7 +58,8 @@ The download part too — the part where you need to click on empty white space 
 
 Also, initially I tried to save files with raw names, but later realized that names like 577_-_DISTRICT.csv made no sense without context, so I had to rewrite that part.
 
-Some Code I Liked
+
+
 One of the clean parts was how I wrote functions for:
 
 getting dropdown options,
