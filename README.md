@@ -18,7 +18,7 @@ Data Consolidation & Transformation
 
 Data Analysis & Insights
 
-Part 1: Web Scraping (a.k.a. Sleepless Nights Part 😅)
+Part 1: Web Scraping (a.k.a. Sleepless Night Part 😅)
 
 This part literally took the most time.
 
