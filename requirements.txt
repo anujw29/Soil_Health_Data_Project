@@ -1,9 +1,0 @@
-pandas
-selenium
-numpy
-requests
-beautifulsoup4
-lxml
-openpyxl
-tqdm
-fake-useragent
